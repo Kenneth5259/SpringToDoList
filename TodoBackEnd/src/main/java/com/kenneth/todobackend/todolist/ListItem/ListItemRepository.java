@@ -1,4 +1,4 @@
-package com.kenneth.todobackend.todolist;
+package com.kenneth.todobackend.todolist.ListItem;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

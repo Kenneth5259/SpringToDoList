@@ -1,6 +1,6 @@
-package com.kenneth.todobackend.todolist;
+package com.kenneth.todobackend.todolist.ListItem;
 
-import com.kenneth.todobackend.todolist.ToDoList;
+import com.kenneth.todobackend.todolist.ToDoList.ToDoList;
 
 import javax.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.kenneth.todobackend.todolist;
+package com.kenneth.todobackend.todolist.ToDoList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,6 +20,14 @@ public class ToDoListService {
 
   // method to add a new list
   public ToDoList addList(ToDoList list) {
+    return toDoListRepository.save(list);
+  }
+
+  // method to delete a list
+  public void deleteList(Integer id) { toDoListRepository.deleteById(id);}
+
+  // method to update a list
+  public ToDoList updateList(ToDoList list) {
     return toDoListRepository.save(list);
   }
 }

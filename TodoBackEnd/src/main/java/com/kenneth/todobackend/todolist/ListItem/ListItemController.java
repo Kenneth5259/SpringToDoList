@@ -1,38 +1,24 @@
-package com.kenneth.todobackend.todolist;
+package com.kenneth.todobackend.todolist.ListItem;
 
+import com.kenneth.todobackend.todolist.ToDoList.ToDoList;
+import com.kenneth.todobackend.todolist.ToDoList.ToDoListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-// Define as rest controller
 @RestController
-// Define route mapping
-@RequestMapping("/list")
-public class ToDoListController {
-
-  // autowire service
-  @Autowired
-  private ToDoListService toDoListService;
+@RequestMapping("/item")
+public class ListItemController {
 
   @Autowired
   private ListItemService listItemService;
 
-  // define get mapping
-  @GetMapping(value="/{id}")
-  public Optional<ToDoList> getByName(@PathVariable("id") Integer id) {
-    return toDoListService.getList(id);
-  }
+  @Autowired
+  private ToDoListService toDoListService;
 
-  // define post mapping
-  @PostMapping(value="/add")
-  public ToDoList addNewList(@RequestBody ToDoList list)
-  {
-    return toDoListService.addList(list);
-  }
-
-  // define a post mapping and route if not /
-  @PostMapping("item/add")
+  // Create
+  @PostMapping("")
   // return a list item using information from request body (JSON)
   public ListItem addListItem(@RequestBody ListItem item) {
 
@@ -46,17 +32,30 @@ public class ToDoListController {
     return listItemService.addListItem(item);
   }
 
-  // define a get mapping and route if not /
-  @GetMapping("item/{id}")
+  // Read
+  @GetMapping("/{item_id}")
   // return a list item or null based off id query using path variable
-  public Optional<ListItem> getListItem(@PathVariable("id") Integer id) {
+  public Optional<ListItem> getListItem(@PathVariable("item_id") Integer id) {
     return listItemService.getListItem(id);
   }
-
-  @GetMapping("item/all/{list_id}")
+  // return all items
+  @GetMapping("/all/{list_id}")
   public Iterable<ListItem> getAllItemsInList(@PathVariable("list_id") Integer id) {
     ToDoList list = toDoListService.getList(id).get();
     return list.getItems();
   }
+
+  // Update
+  @PutMapping("/")
+  public ListItem updateListItem(@RequestBody ListItem listItem) {
+    return listItemService.updateListItem(listItem);
+  }
+
+  // Delete
+  @DeleteMapping("/{list_id}")
+  public void deleteListItem(@PathVariable("list_id") Integer id){
+    listItemService.deleteListItem(id);
+  }
+
 
 }

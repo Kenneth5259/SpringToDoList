@@ -1,6 +1,7 @@
-package com.kenneth.todobackend.todolist;
+package com.kenneth.todobackend.todolist.ToDoList;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.kenneth.todobackend.todolist.ListItem.ListItem;
 
 import javax.persistence.*;
 import java.util.HashSet;
